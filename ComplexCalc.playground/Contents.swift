@@ -10,6 +10,18 @@ class Calculator {
     func subtract(lhs: Int, rhs: Int) -> Int {
         return lhs - rhs
     }
+    
+    func multiply(lhs: Int, rhs: Int) -> Int {
+        return lhs * rhs
+    }
+    
+    func divide(lhs: Int, rhs: Int) -> Int {
+        return lhs / rhs
+    }
+    
+    func mathOp(lhs: Int, rhs: Int, op: (_ lhs: Int, _ rhs: Int) -> Int) -> Int {
+        return op(lhs, rhs)
+    }
 }
 
 let calc = Calculator()  // Don't change this declaration name; it's used in all the tests below
@@ -20,15 +32,15 @@ let calc = Calculator()  // Don't change this declaration name; it's used in all
 // ====> Do not modify code in this section <====
 calc.add(lhs: 2, rhs: 2) == 4
 calc.subtract(lhs: 2, rhs: 2) == 0
-/* calc.multiply(lhs: 2, rhs: 2) == 4
+calc.multiply(lhs: 2, rhs: 2) == 4
 calc.divide(lhs: 2, rhs: 2) == 1
 
-calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rjs) + (lhs * rhs) }) == 35
+calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (lhs * rhs) }) == 35
     // This style is one way of writing an anonymous function
 calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
     // This is the second, more terse, style; either works
 
-calc.add([1, 2, 3, 4, 5]) == 15
+/* calc.add([1, 2, 3, 4, 5]) == 15
 calc.multiply([1, 2, 3, 4, 5]) == 120
 calc.count([1, 2, 3, 4, 5, 6, 7, 8]) == 8
 calc.count([]) == 0
