@@ -21,7 +21,6 @@ class Calculator {
         return lhs / rhs
     }
     
-    
     func mathOp(lhs: Int, rhs: Int, op: (_ lhs: Int, _ rhs: Int) -> Int) -> Int {
         return op(lhs, rhs)
     }
@@ -47,10 +46,7 @@ class Calculator {
     }
     
     func avg(_ args: [Int]) -> Int {
-        var mean = 0
-        for i in args {
-            mean += i
-        }
+        let mean = add(args)
         return mean / args.count
     }
     
@@ -62,7 +58,29 @@ class Calculator {
         return outcome
     }
     
+    func add(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        let t1 = add(lhs: lhs.0, rhs: rhs.0)
+        let t2 = add(lhs: lhs.1, rhs: rhs.1)
+        return (t1, t2)
+    }
     
+    func subtract(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        let t1 = subtract(lhs: lhs.0, rhs: rhs.0)
+        let t2 = subtract(lhs: lhs.1, rhs: rhs.1)
+        return (t1, t2)
+    }
+    
+    func add(lhs: Dictionary<String, Int>, rhs: Dictionary<String, Int>) -> Dictionary<String, Int> {
+        let p1 = lhs["x"]! + rhs["x"]!
+        let p2 = lhs["y"]! + rhs["y"]!
+        return ["x": p1, "y": p2]
+    }
+    
+    func subtract(lhs: Dictionary<String, Int>, rhs: Dictionary<String, Int>) -> Dictionary<String, Int> {
+        let p1 = lhs["x"]! - rhs["x"]!
+        let p2 = lhs["y"]! - rhs["y"]!
+        return ["x": p1, "y": p2]
+    }
 }
 
 let calc = Calculator()  // Don't change this declaration name; it's used in all the tests below
@@ -95,7 +113,7 @@ calc.mathOp(args: [1, 2, 3, 4, 5], beg: 0, op: { $0 + $1 }) == 15
     // this is (((((0 op 1) op 2) op 3) op 4) op 5)
 calc.mathOp(args: [1, 1, 1, 1, 1], beg: 1, op: { $0 * $1 }) == 1
     // this is (((((1 op 1) op 1) op 1) op 1) op 1)
-/*
+
 let p1 = (5, 5)
 let p2 = (12, -27)
 let p3 = (-4, 4)
@@ -109,4 +127,4 @@ let pd1 = ["x": 5, "y": 5]
 let pd2 = ["x": -4, "y": 4]
 calc.add(lhs: pd1, rhs: pd2) == ["x": 1, "y": 9]
 calc.subtract(lhs: pd1, rhs: pd2) == ["x": 9, "y": 1]
-*/
+
